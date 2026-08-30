@@ -1,6 +1,9 @@
 """
 CricIntel Pro - Streamlit Analytics & Prediction Interface
 Complete data-driven intelligence powered by authentic 1,169 IPL matches.
+
+Developed by A VIVEK GOUD
+Computer Science and Engineering | Vardhaman College of Engineering
 """
 
 import streamlit as st
@@ -26,6 +29,11 @@ nav = st.sidebar.radio(
     "Navigation",
     ["📊 Dashboard", "👤 Player Intelligence", "🛡️ Team Analytics", "🏟️ Venues & Pitches", "🔮 Match Predictor", "⚡ Match Center", "📰 News & Squads"]
 )
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("👨‍💻 **Developer Info**")
+st.sidebar.markdown("**A VIVEK GOUD**")
+st.sidebar.caption("Computer Science & Engineering\nVardhaman College of Engineering")
 
 # 1. DASHBOARD
 if nav == "📊 Dashboard":

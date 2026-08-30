@@ -11,12 +11,16 @@
 
 *An enterprise-grade, data-driven cricket analytics platform powered by authentic ball-by-ball records from 1,169 matches across 2008–2025.*
 
+**Developed by [A Vivek Goud](https://github.com/avivekgoud)**  
+*Department of Computer Science and Engineering, Vardhaman College of Engineering*
+
 </div>
 
 ---
 
 ## 📌 Table of Contents
 - [Overview](#-overview)
+- [Author & Developer](#-author--developer)
 - [Key Features](#-key-features)
 - [Architecture & Tech Stack](#-architecture--tech-stack)
 - [Repository Structure](#-repository-structure)
@@ -24,6 +28,18 @@
 - [API Endpoints](#-api-endpoints)
 - [Verification & Automated Tests](#-verification--automated-tests)
 - [Contributing & License](#-contributing--license)
+
+---
+
+## 👨‍💻 Author & Developer
+
+| Detail | Information |
+| :--- | :--- |
+| **Developer Name** | **A Vivek Goud** |
+| **Field of Study** | **Computer Science and Engineering (CSE)** |
+| **Institution** | **Vardhaman College of Engineering** |
+| **GitHub Profile** | [@avivekgoud](https://github.com/avivekgoud) |
+| **Repository** | [cricket-analytics](https://github.com/avivekgoud/cricket-analytics) |
 
 ---
 
@@ -101,7 +117,7 @@
 ├── requirements.txt                # Python package dependencies
 ├── Players.csv                     # Player biographical metadata
 ├── IPL.csv.gz                      # Compressed ball-by-ball historical dataset (6.3 MB)
-└── README.md                       # Documentation
+└── README.md                       # Documentation & Author Info
 ```
 
 ---
@@ -110,8 +126,8 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/cricintel-pro.git
-cd cricintel-pro
+git clone https://github.com/avivekgoud/cricket-analytics.git
+cd cricket-analytics
 ```
 
 ### 2. Install Dependencies
@@ -146,5 +162,6 @@ python verify_all.py
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📄 License & Credits
+Developed with ❤️ by **A Vivek Goud** (Department of Computer Science and Engineering, Vardhaman College of Engineering).  
+Licensed under the [MIT License](LICENSE).
