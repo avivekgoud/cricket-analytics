@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Large Raw Datasets (Compressed IPL.csv.gz is used instead to comply with GitHub <100MB limit)
+IPL.csv
+deliveries.csv
+matches.csv
+deliveries.csv.zip
+data.csv
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.rdp
+
+# Temporary Scratch Files & OS Folders
+*.tmp
+*.log
+.system_generated/
+scratch/
+test_write.txt
+cvvlab.txt
+isy cep 501.pdf
+.RData
+.Rhistory
+"Custom Office Templates"/
+FeedbackHub/
+KingsoftData/
+"My Music"/
+"My Pictures"/
+"My Videos"/
+build.py
+build_backend.py
+build_system.py
