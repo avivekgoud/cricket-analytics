@@ -117,27 +117,62 @@ class CricketDataLoader:
         return TEAM_ALIASES.get(t, t)
 
     def load_and_process_all_data(self):
-        print('[CricketDataLoader] Loading IPL ball-by-ball dataset...')
+        import gc
+        print('[CricketDataLoader] Loading IPL ball-by-ball dataset with low-memory indexing...')
         csv_path = IPL_CSV_PATH
         gz_path = os.path.join(DATA_DIR, 'IPL.csv.gz')
-        if os.path.exists(csv_path):
-            self.df_balls = pd.read_csv(csv_path, low_memory=False)
-        elif os.path.exists(gz_path):
-            self.df_balls = pd.read_csv(gz_path, compression='gzip', low_memory=False)
-        else:
+        target_path = csv_path if os.path.exists(csv_path) else gz_path
+        
+        if not os.path.exists(target_path):
             raise FileNotFoundError(f'IPL dataset not found at: {IPL_CSV_PATH} or {gz_path}')
+
+        usecols = [
+            'match_id', 'season', 'date', 'venue', 'city',
+            'batting_team', 'bowling_team', 'innings', 'over', 'ball',
+            'batter', 'bowler', 'runs_batter', 'runs_total', 'player_out'
+        ]
+        
+        sample_cols = pd.read_csv(target_path, nrows=1).columns.tolist()
+        for opt_col in ['runs_bowler', 'bowler_wicket', 'match_won_by', 'toss_winner', 'toss_decision', 'player_of_match', 'win_outcome', 'fielders', 'wicket_kind']:
+            if opt_col in sample_cols and opt_col not in usecols:
+                usecols.append(opt_col)
+
+        dtypes = {
+            'match_id': 'int32',
+            'innings': 'int8',
+            'over': 'int8',
+            'ball': 'int8',
+            'runs_batter': 'int8',
+            'runs_total': 'int8',
+            'batter': 'category',
+            'bowler': 'category',
+            'venue': 'category',
+            'batting_team': 'category',
+            'bowling_team': 'category'
+        }
+
+        self.df_balls = pd.read_csv(
+            target_path,
+            usecols=usecols,
+            dtype={k: v for k, v in dtypes.items() if k in usecols},
+            low_memory=False
+        )
+
         self.df_balls['season_clean'] = self.df_balls['season'].apply(self.normalize_season)
         self.df_balls['batting_team_clean'] = self.df_balls['batting_team'].apply(self.normalize_team)
         self.df_balls['bowling_team_clean'] = self.df_balls['bowling_team'].apply(self.normalize_team)
-        self.df_balls['match_won_by_clean'] = self.df_balls['match_won_by'].apply(self.normalize_team)
-        self.df_balls['toss_winner_clean'] = self.df_balls['toss_winner'].apply(self.normalize_team)
+        if 'match_won_by' in self.df_balls.columns:
+            self.df_balls['match_won_by_clean'] = self.df_balls['match_won_by'].apply(self.normalize_team)
+        if 'toss_winner' in self.df_balls.columns:
+            self.df_balls['toss_winner_clean'] = self.df_balls['toss_winner'].apply(self.normalize_team)
 
         self._build_match_catalog()
         self._build_players_directory()
         self._build_team_profiles()
         self._build_venue_directory()
         self._build_records_catalog()
-        print(f'[CricketDataLoader] Successfully indexed {len(self.players_catalog)} players, {len(self.historical_matches_list)} matches, {len(self.teams_catalog)} teams, {len(self.venues_catalog)} venues.')
+        gc.collect()
+        print(f'[CricketDataLoader] Successfully indexed {len(self.players_catalog)} players, {len(self.historical_matches_list)} matches, {len(self.teams_catalog)} teams, {len(self.venues_catalog)} venues within low memory footprint.')
 
     def _build_match_catalog(self):
         grouped = self.df_balls.groupby('match_id')
