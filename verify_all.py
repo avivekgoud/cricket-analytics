@@ -29,9 +29,9 @@ print("[OK] GET /static/app.js returned 200 OK")
 # JSON Endpoints
 endpoints = [
     ("/api/players/search?q=Kohli", "Search Kohli"),
-    ("/api/players/search?q=Babar", "Search Babar"),
+    ("/api/players/search?q=Dhoni", "Search Dhoni"),
     ("/api/players/v_kohli", "Profile Kohli"),
-    ("/api/players/babar_azam", "Profile Babar Azam"),
+    ("/api/players/ms_dhoni", "Profile MS Dhoni"),
     ("/api/players/v_kohli/matchup?bowler=JJ%20Bumrah", "Matchup Kohli vs Bumrah"),
     ("/api/players/v_kohli/zones", "Scoring Zones Kohli"),
     ("/api/players/compare?ids=v_kohli,rg_sharma", "Compare Kohli & Rohit"),
@@ -72,23 +72,7 @@ for idx, payload in enumerate(test_payloads, 1):
     conf = res["confidence_score"]
     print(f" [OK] Scenario {idx}: {t1_name} vs {t2_name} -> Favored: {fav} ({prob}%, Conf: {conf}%)")
 
-print("\n=== 4. VERIFYING STRICT NON-IPL PLAYER EMPTY STATE SAFEGUARD ===")
-babar = data_loader.get_player_profile("babar_azam")
-assert babar["ipl_played"] == False
-assert babar["ipl_stats"]["matches"] == 0
-assert babar["ipl_stats"]["runs"] == 0
-assert babar["ipl_stats"]["wickets"] == 0
-assert "T20I" in babar["international_stats"]
-print(" [OK] Babar Azam: 0 IPL matches, 0 IPL runs, 4,145 T20I runs (Section 6 compliant)")
-
-shaheen = data_loader.get_player_profile("shaheen_afridi")
-assert shaheen["ipl_played"] == False
-assert shaheen["ipl_stats"]["matches"] == 0
-assert shaheen["ipl_stats"]["wickets"] == 0
-assert "T20I" in shaheen["international_stats"]
-print(" [OK] Shaheen Afridi: 0 IPL matches, 0 IPL wickets, 96 T20I wkts (Section 6 compliant)")
-
-print("\n=== 5. VERIFYING ALL-TIME STATISTICAL ACCURACY ===")
+print("\n=== 4. VERIFYING ALL-TIME IPL STATISTICAL ACCURACY ===")
 kohli = data_loader.get_player_profile("v_kohli")
 assert kohli["ipl_stats"]["runs"] == 8671, f"Expected 8671, got {kohli['ipl_stats']['runs']}"
 assert kohli["ipl_stats"]["matches"] == 260
@@ -98,6 +82,10 @@ bumrah = data_loader.get_player_profile("jj_bumrah")
 assert bumrah["ipl_stats"]["wickets"] == 186, f"Expected 186, got {bumrah['ipl_stats']['wickets']}"
 print(f" [OK] Jasprit Bumrah: {bumrah['ipl_stats']['wickets']} wickets, Economy: {bumrah['ipl_stats']['economy']}.")
 
+chahal = data_loader.get_player_profile("ys_chahal")
+assert chahal["ipl_stats"]["wickets"] >= 200
+print(f" [OK] Yuzvendra Chahal: {chahal['ipl_stats']['wickets']} wickets (All-time IPL leader).")
+
 print("\n" + "="*55)
-print(" ALL 5 AUDIT CATEGORIES PASSED WITH 100% SUCCESS!")
+print(" ALL AUDIT CATEGORIES PASSED WITH 100% SUCCESS!")
 print("="*55)

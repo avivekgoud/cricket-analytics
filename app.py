@@ -65,18 +65,18 @@ if nav == "📊 Dashboard":
 elif nav == "👤 Player Intelligence":
     st.title("👤 Player Intelligence Hub")
     
-    query = st.text_input("🔍 Search any cricketer (e.g. Virat Kohli, Rohit Sharma, Bumrah, Babar Azam, Klaasen)...", "Virat Kohli")
+    query = st.text_input("🔍 Search any IPL cricketer (e.g. Virat Kohli, Rohit Sharma, MS Dhoni, Bumrah, Narine, Klaasen)...", "Virat Kohli")
     search_results = data_loader.search_players(query)
     
     if search_results:
-        options = {f"{p['display_name']} ({p['role']} - {p['country']})": p['id'] for p in search_results}
+        options = {f"{p['display_name']} ({p['role']} - {p['current_team']})": p['id'] for p in search_results}
         selected_label = st.selectbox("Select Player Profile", list(options.keys()))
         selected_id = options[selected_label]
         
         p = data_loader.get_player_profile(selected_id)
         if p:
-            st.markdown(f"## {p['display_name']} {'🟢 (IPL Player)' if p['ipl_played'] else '🟠 (International Player)'}")
-            st.caption(f"**Country:** {p['country']} | **Role:** {p['role']} | **Batting:** {p['batting_style']} | **Bowling:** {p['bowling_style']} | **Current Team:** {p['current_team']} | **Status:** {p['status']}")
+            st.markdown(f"## {p['display_name']} 🔵 *(IPL Player)*")
+            st.caption(f"**Franchise:** {p['current_team']} | **Role:** {p['role']} | **Batting:** {p['batting_style']} | **Bowling:** {p['bowling_style']} | **Status:** {p['status']}")
             
             tabs = st.tabs(["Overview", "Batting", "Bowling", "IPL Career & Seasons", "Last 5 & Matches", "Teams", "Venues", "Opposition", "Form Engine", "Records", "Matchup Matrix"])
             
@@ -84,32 +84,18 @@ elif nav == "👤 Player Intelligence":
             with tabs[0]:
                 st.subheader("📊 Key Career Metrics")
                 st_data = p.get('ipl_stats', {})
-                if p['ipl_played']:
-                    mc1, mc2, mc3, mc4, mc5 = st.columns(5)
-                    mc1.metric("IPL Matches", st_data.get('matches', 0))
-                    mc2.metric("IPL Runs", f"{st_data.get('runs', 0):,}")
-                    mc3.metric("Batting Avg", st_data.get('average', 0.0))
-                    mc4.metric("Strike Rate", st_data.get('strike_rate', 0.0))
-                    mc5.metric("IPL Wickets", st_data.get('wickets', 0))
-                else:
-                    t20i = p.get('international_stats', {}).get('T20I', {})
-                    mc1, mc2, mc3, mc4 = st.columns(4)
-                    mc1.metric("T20I Matches", t20i.get('matches', 0))
-                    mc2.metric("T20I Runs", f"{t20i.get('runs', 0):,}")
-                    mc3.metric("T20I Average", t20i.get('average', 0.0))
-                    mc4.metric("T20I Strike Rate", t20i.get('strike_rate', 0.0))
+                mc1, mc2, mc3, mc4, mc5 = st.columns(5)
+                mc1.metric("IPL Matches", st_data.get('matches', 0))
+                mc2.metric("IPL Runs", f"{st_data.get('runs', 0):,}")
+                mc3.metric("Batting Avg", st_data.get('average', 0.0))
+                mc4.metric("Strike Rate", st_data.get('strike_rate', 0.0))
+                mc5.metric("IPL Wickets", st_data.get('wickets', 0))
 
             # Tab 4: IPL Career & Seasons
             with tabs[3]:
-                if not p['ipl_played']:
-                    st.warning("⚠️ **IPL Career: This player has not played an IPL match.**")
-                    st.info("""IPL Matches: 0 | IPL Runs: 0 | IPL Wickets: 0 | IPL Seasons: 0
-
-No IPL match data available for this player. International statistics are available under other tabs.""")
-                else:
-                    st.subheader("📅 Season-by-Season IPL Record")
-                    seasons_df = pd.DataFrame(list(p['ipl_seasons'].values()))
-                    st.dataframe(seasons_df, use_container_width=True)
+                st.subheader("📅 Season-by-Season IPL Record")
+                seasons_df = pd.DataFrame(list(p['ipl_seasons'].values()))
+                st.dataframe(seasons_df, use_container_width=True)
 
             # Tab 5: Last 5 & Matches
             with tabs[4]:

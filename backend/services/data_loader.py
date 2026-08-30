@@ -77,98 +77,6 @@ KNOWN_PLAYERS_META = {
     'Rinku Singh': {'full_name': 'Rinku Singh', 'display_name': 'Rinku Singh', 'country': 'India', 'dob': '12-Oct-1997', 'role': 'Batter', 'batting_style': 'Left-hand bat', 'bowling_style': 'Right-arm offbreak', 'current_team': 'Kolkata Knight Riders', 'jersey_number': 35, 'status': 'Active', 'career_span': '2018 - Present', 'aliases': ['Kingku', 'Rinku', 'Lord Rinku'], 'avatar': ''}
 }
 
-NON_IPL_PLAYERS = {
-    'Babar Azam': {
-        'full_name': 'Mohammad Babar Azam',
-        'display_name': 'Babar Azam',
-        'country': 'Pakistan',
-        'dob': '15-Oct-1994',
-        'role': 'Batter',
-        'batting_style': 'Right-hand bat',
-        'bowling_style': 'Right-arm offbreak',
-        'current_team': 'Peshawar Zalmi / Pakistan',
-        'jersey_number': 56,
-        'status': 'Active',
-        'career_span': '2015 - Present',
-        'aliases': ['King Babar', 'Bobby', 'Babar'],
-        'ipl_played': False,
-        'international_stats': {
-            'T20I': {'matches': 123, 'runs': 4145, 'average': 41.03, 'strike_rate': 129.08, 'hundreds': 3, 'fifties': 36, 'highest_score': 122},
-            'ODI': {'matches': 117, 'runs': 5729, 'average': 56.72, 'strike_rate': 88.75, 'hundreds': 19, 'fifties': 32, 'highest_score': 158},
-            'Test': {'matches': 55, 'runs': 3997, 'average': 44.91, 'strike_rate': 54.80, 'hundreds': 9, 'fifties': 26, 'highest_score': 196}
-        },
-        'other_leagues': {
-            'PSL': {'matches': 90, 'runs': 3504, 'average': 45.50, 'strike_rate': 127.41, 'hundreds': 2, 'fifties': 33},
-            'BPL': {'matches': 18, 'runs': 580, 'average': 38.66, 'strike_rate': 119.20, 'hundreds': 0, 'fifties': 5}
-        }
-    },
-    'Shaheen Afridi': {
-        'full_name': 'Shaheen Shah Afridi',
-        'display_name': 'Shaheen Afridi',
-        'country': 'Pakistan',
-        'dob': '06-Apr-2000',
-        'role': 'Bowler',
-        'batting_style': 'Left-hand bat',
-        'bowling_style': 'Left-arm fast',
-        'current_team': 'Lahore Qalandars / Pakistan',
-        'jersey_number': 10,
-        'status': 'Active',
-        'career_span': '2018 - Present',
-        'aliases': ['Eagle', 'Shaheen', 'Afridi'],
-        'ipl_played': False,
-        'international_stats': {
-            'T20I': {'matches': 70, 'wickets': 96, 'economy': 7.74, 'average': 20.82, 'best_bowling': '4/22', 'four_w': 2},
-            'ODI': {'matches': 53, 'wickets': 104, 'economy': 5.52, 'average': 23.94, 'best_bowling': '6/35', 'five_w': 3},
-            'Test': {'matches': 30, 'wickets': 115, 'economy': 3.12, 'average': 27.08, 'best_bowling': '6/51', 'five_w': 4}
-        },
-        'other_leagues': {
-            'PSL': {'matches': 72, 'wickets': 98, 'economy': 7.85, 'average': 21.14, 'best_bowling': '5/4'}
-        }
-    },
-    'Mohammad Rizwan': {
-        'full_name': 'Mohammad Rizwan',
-        'display_name': 'Mohammad Rizwan',
-        'country': 'Pakistan',
-        'dob': '01-Jun-1992',
-        'role': 'WK-Batter',
-        'batting_style': 'Right-hand bat',
-        'bowling_style': 'Right-arm medium',
-        'current_team': 'Multan Sultans / Pakistan',
-        'jersey_number': 16,
-        'status': 'Active',
-        'career_span': '2015 - Present',
-        'aliases': ['Rizwan', 'Rizzi'],
-        'ipl_played': False,
-        'international_stats': {
-            'T20I': {'matches': 102, 'runs': 3313, 'average': 48.72, 'strike_rate': 126.45, 'hundreds': 1, 'fifties': 29, 'highest_score': 104},
-            'ODI': {'matches': 74, 'runs': 2088, 'average': 40.15, 'strike_rate': 89.20, 'hundreds': 3, 'fifties': 13, 'highest_score': 131},
-            'Test': {'matches': 32, 'runs': 1789, 'average': 44.72, 'strike_rate': 53.40, 'hundreds': 3, 'fifties': 9, 'highest_score': 171}
-        },
-        'other_leagues': {
-            'PSL': {'matches': 81, 'runs': 2404, 'average': 43.70, 'strike_rate': 128.55, 'hundreds': 1, 'fifties': 19}
-        }
-    },
-    'Naseem Shah': {
-        'full_name': 'Naseem Abbas Shah',
-        'display_name': 'Naseem Shah',
-        'country': 'Pakistan',
-        'dob': '15-Feb-2003',
-        'role': 'Bowler',
-        'batting_style': 'Right-hand bat',
-        'bowling_style': 'Right-arm fast',
-        'current_team': 'Islamabad United / Pakistan',
-        'jersey_number': 71,
-        'status': 'Active',
-        'career_span': '2019 - Present',
-        'aliases': ['Naseem', 'Shah'],
-        'ipl_played': False,
-        'international_stats': {
-            'T20I': {'matches': 28, 'wickets': 24, 'economy': 7.42, 'average': 31.00, 'best_bowling': '2/7'},
-            'ODI': {'matches': 14, 'wickets': 32, 'economy': 4.69, 'average': 16.96, 'best_bowling': '5/33', 'five_w': 2},
-            'Test': {'matches': 19, 'wickets': 56, 'economy': 3.48, 'average': 34.07, 'best_bowling': '5/31', 'five_w': 1}
-        }
-    }
-}
 
 class CricketDataLoader:
     _instance = None
@@ -364,33 +272,7 @@ class CricketDataLoader:
             for al in aliases:
                 self.player_aliases[al.lower()] = player_id
 
-        for non_name, non_data in NON_IPL_PLAYERS.items():
-            non_id = re.sub(r'[^a-zA-Z0-9]', '_', non_name.lower())
-            p_obj = {
-                'id': non_id,
-                'short_name': non_name,
-                'full_name': non_data['full_name'],
-                'display_name': non_data['display_name'],
-                'country': non_data['country'],
-                'dob': non_data['dob'],
-                'role': non_data['role'],
-                'batting_style': non_data['batting_style'],
-                'bowling_style': non_data['bowling_style'],
-                'current_team': non_data['current_team'],
-                'jersey_number': non_data.get('jersey_number'),
-                'status': non_data.get('status', 'Active'),
-                'career_span': non_data.get('career_span', 'International'),
-                'aliases': non_data.get('aliases', []),
-                'avatar': '',
-                'ipl_played': non_data.get('ipl_played', False),
-                'international_stats': non_data.get('international_stats', {}),
-                'other_leagues': non_data.get('other_leagues', {})
-            }
-            self.players_catalog[non_id] = p_obj
-            self.player_aliases[non_name.lower()] = non_id
-            self.player_aliases[non_data['full_name'].lower()] = non_id
-            for al in non_data.get('aliases', []):
-                self.player_aliases[al.lower()] = non_id
+        
 
     def _build_team_profiles(self):
         teams = list(TEAM_METADATA.keys())

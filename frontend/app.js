@@ -90,7 +90,7 @@ function renderSearchDropdown(players) {
         </div>
       </div>
       <div>
-        ${p.ipl_played ? '<span class="badge badge-green">IPL Player</span>' : '<span class="badge badge-orange">Non-IPL</span>'}
+        <span class="badge badge-blue">IPL Record</span>
       </div>
     </div>
   `).join('');
@@ -208,46 +208,45 @@ async function loadPlayerProfile(playerId) {
 }
 
 function renderPlayerHeader(p) {
-  const isIpl = p.ipl_played;
   const stats = p.ipl_stats || {};
   
   document.getElementById('player-profile-header').innerHTML = `
     <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
       <div style="display: flex; gap: 1.25rem; align-items: center;">
-        <div style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #0284c7); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: 800; color: white;">
+        <div style="width: 64px; height: 64px; border-radius: 8px; background: var(--accent-primary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: white;">
           ${p.display_name.split(' ').map(n => n[0]).join('')}
         </div>
         <div>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <h1 style="font-size: 1.75rem; font-weight: 800;">${p.display_name}</h1>
-            ${isIpl ? '<span class="badge badge-green">IPL Pro</span>' : '<span class="badge badge-orange">International Only</span>'}
-            <span class="badge badge-blue">${p.status}</span>
+            <h1 style="font-size: 1.6rem; font-weight: 800;">${p.display_name}</h1>
+            <span class="badge badge-blue">IPL Record</span>
+            <span class="badge badge-green">${p.status}</span>
           </div>
           <div style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">
-            ${p.country} • ${p.role} • ${p.batting_style} ${p.bowling_style !== 'N/A' ? '• ' + p.bowling_style : ''}
+            ${p.role} • ${p.batting_style} ${p.bowling_style !== 'N/A' ? '• ' + p.bowling_style : ''} • Franchise: <strong>${p.current_team}</strong>
           </div>
           <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
-            Current: <strong>${p.current_team}</strong> | Career: ${p.career_span} ${p.jersey_number ? '| Jersey #' + p.jersey_number : ''}
+            Career: ${p.career_span} ${p.jersey_number ? '| Jersey #' + p.jersey_number : ''}
           </div>
         </div>
       </div>
 
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <div style="background: var(--bg-card-hover); padding: 0.75rem 1rem; border-radius: 10px; text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-muted);">${isIpl ? 'IPL Runs' : 'T20I Runs'}</div>
-          <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-green);">
-            ${isIpl ? (stats.runs || 0).toLocaleString() : (p.international_stats?.T20I?.runs || 0).toLocaleString()}
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <div style="background: var(--bg-card-hover); padding: 0.6rem 0.85rem; border-radius: 6px; text-align: center; border: 1px solid var(--border-color);">
+          <div style="font-size: 0.75rem; color: var(--text-muted);">IPL Runs</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent-primary);">
+            ${(stats.runs || 0).toLocaleString()}
           </div>
         </div>
-        <div style="background: var(--bg-card-hover); padding: 0.75rem 1rem; border-radius: 10px; text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-muted);">${isIpl ? 'IPL Wickets' : 'T20I Wickets'}</div>
-          <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-blue);">
-            ${isIpl ? (stats.wickets || 0) : (p.international_stats?.T20I?.wickets || 0)}
+        <div style="background: var(--bg-card-hover); padding: 0.6rem 0.85rem; border-radius: 6px; text-align: center; border: 1px solid var(--border-color);">
+          <div style="font-size: 0.75rem; color: var(--text-muted);">IPL Wickets</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent-green);">
+            ${stats.wickets || 0}
           </div>
         </div>
-        <div style="background: var(--bg-card-hover); padding: 0.75rem 1rem; border-radius: 10px; text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-muted);">Form Score</div>
-          <div style="font-size: 1.25rem; font-weight: 800; color: var(--accent-orange);">
+        <div style="background: var(--bg-card-hover); padding: 0.6rem 0.85rem; border-radius: 6px; text-align: center; border: 1px solid var(--border-color);">
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Form Rating</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent-orange);">
             ${p.form_analysis?.form_score || 75.0}
           </div>
         </div>

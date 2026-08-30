@@ -3,115 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CricIntel Pro - Cricket Analytics & Explainable Prediction Platform</title>
+  <title>CricIntel Pro - IPL Analytics & Prediction Platform</title>
   <link rel="stylesheet" href="/static/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="header-container">
       <div class="logo-area" onclick="navigate('dashboard')">
-        <div class="logo-icon">🏏</div>
-        <div>
-          <span style="color: var(--accent-green);">CRIC</span>INTEL <span style="font-size: 0.75rem; background: rgba(16, 185, 129, 0.2); color: var(--accent-green); padding: 2px 6px; border-radius: 4px; margin-left: 4px;">PRO 2.0</span>
-        </div>
+        <span style="font-size: 1.3rem;">🏏</span>
+        <span style="font-weight: 800; letter-spacing: -0.02em;">CRICINTEL</span>
+        <span class="logo-badge">IPL PRO</span>
       </div>
 
-      <!-- Global Search -->
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="global-search-input" class="search-input" placeholder="Search any player (e.g. Virat Kohli, Bumrah, Babar Azam, CSK, Wankhede)..." autocomplete="off">
+        <input type="text" id="global-search-input" class="search-input" placeholder="Search IPL player, franchise, or venue (e.g. Kohli, Bumrah, Dhoni, CSK, Wankhede)..." autocomplete="off">
         <div id="search-dropdown" class="search-dropdown"></div>
       </div>
 
-      <!-- Nav Links & Controls -->
       <nav>
         <ul class="nav-links">
-          <li><button class="nav-btn active" id="nav-dashboard" onclick="navigate('dashboard')">📊 Dashboard</button></li>
-          <li><button class="nav-btn" id="nav-player" onclick="navigate('player')">👤 Player Intel</button></li>
-          <li><button class="nav-btn" id="nav-teams" onclick="navigate('teams')">🛡️ Teams</button></li>
-          <li><button class="nav-btn" id="nav-venues" onclick="navigate('venues')">🏟️ Venues</button></li>
-          <li><button class="nav-btn" id="nav-predictor" onclick="navigate('predictor')">🔮 Predictor</button></li>
-          <li><button class="nav-btn" id="nav-matches" onclick="navigate('matches')">⚡ Match Center</button></li>
-          <li><button class="nav-btn" id="nav-news" onclick="navigate('news')">📰 News & Squads</button></li>
-          <li><button class="nav-btn" id="nav-admin" onclick="navigate('admin')">⚙️ Admin</button></li>
+          <li><button class="nav-btn active" id="nav-dashboard" onclick="navigate('dashboard')">Dashboard</button></li>
+          <li><button class="nav-btn" id="nav-player" onclick="navigate('player')">Player Intel</button></li>
+          <li><button class="nav-btn" id="nav-teams" onclick="navigate('teams')">Franchises</button></li>
+          <li><button class="nav-btn" id="nav-venues" onclick="navigate('venues')">Venues</button></li>
+          <li><button class="nav-btn" id="nav-predictor" onclick="navigate('predictor')">Predictor</button></li>
+          <li><button class="nav-btn" id="nav-matches" onclick="navigate('matches')">Match Center</button></li>
+          <li><button class="nav-btn" id="nav-news" onclick="navigate('news')">Squads & News</button></li>
+          <li><button class="nav-btn" id="nav-admin" onclick="navigate('admin')">Data Admin</button></li>
           <li><button class="nav-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">🌙</button></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Main Container -->
   <main>
-    <!-- 1. DASHBOARD VIEW -->
+    <!-- 1. DASHBOARD -->
     <section id="view-dashboard" class="view-section active">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
         <div>
-          <h1 style="font-size: 1.75rem; font-weight: 800;">Cricket Analytics & Player Intelligence Platform</h1>
-          <p style="color: var(--text-secondary); font-size: 0.9rem;">Authentic data-driven insights across 1,169 matches, 770+ cricketers, and multi-tournament intelligence.</p>
+          <h1 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">Indian Premier League Analytics & Intelligence</h1>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">Authentic ball-by-ball analysis across 1,169 matches, 10 franchises, and 57 stadiums (2008–2025).</p>
         </div>
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="nav-btn" onclick="exportPlatformSummary()" style="background: var(--bg-card); border: 1px solid var(--border-color);">📥 Export Report</button>
+        <button class="nav-btn" onclick="exportPlatformSummary()" style="background: var(--bg-card); border: 1px solid var(--border-color);">Print / Export</button>
+      </div>
+
+      <div class="grid-cards" style="margin-bottom: 1.25rem;">
+        <div class="card" style="border-left: 4px solid var(--accent-primary); cursor: pointer;" onclick="openUpcomingMatchModal('up_2026_01')">
+          <div class="card-header"><span class="badge badge-blue">Featured Match</span><span class="card-subtitle">Wankhede Stadium</span></div>
+          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.2rem;">CSK vs MI</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">CSK 54.2% | MI 45.8%</div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-green); cursor: pointer;" onclick="navigate('player', 'v_kohli')">
+          <div class="card-header"><span class="badge badge-green">All-Time Run Leader</span><span class="card-subtitle">RCB</span></div>
+          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.2rem;">Virat Kohli</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">8,671 Runs | 260 Matches | 17 Seasons</div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-orange); cursor: pointer;" onclick="navigate('player', 'ys_chahal')">
+          <div class="card-header"><span class="badge badge-orange">All-Time Wicket Leader</span><span class="card-subtitle">RR</span></div>
+          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.2rem;">Yuzvendra Chahal</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">221 Wickets | 7.68 Economy</div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid var(--accent-primary); cursor: pointer;" onclick="navigate('player', 'jj_bumrah')">
+          <div class="card-header"><span class="badge badge-blue">Elite Pacer</span><span class="card-subtitle">MI</span></div>
+          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.2rem;">Jasprit Bumrah</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);">186 Wickets | 7.01 Economy</div>
         </div>
       </div>
 
-      <!-- Quick Ticker Cards -->
-      <div class="grid-cards" style="margin-bottom: 1.5rem;">
-        <div class="card" style="border-left: 4px solid var(--accent-green); cursor: pointer;" onclick="openUpcomingMatchModal('up_2026_01')">
-          <div class="card-header"><span class="badge badge-green">Upcoming Match</span><span class="card-subtitle">Wankhede Stadium</span></div>
-          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">CSK vs MI</div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Winning Chance: CSK 54.2% | MI 45.8%</div>
-          <div style="font-size: 0.8rem; color: var(--accent-green);">View XI & Pitch Analysis →</div>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--accent-blue); cursor: pointer;" onclick="navigate('player', 'v_kohli')">
-          <div class="card-header"><span class="badge badge-blue">Trending Star</span><span class="card-subtitle">RCB</span></div>
-          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">Virat Kohli</div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">8,671 Runs | 17 Seasons | Form: 88.4</div>
-          <div style="font-size: 0.8rem; color: var(--accent-blue);">Open Full Profile →</div>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--accent-orange); cursor: pointer;" onclick="navigate('player', 'jj_bumrah')">
-          <div class="card-header"><span class="badge badge-orange">Elite Pacer</span><span class="card-subtitle">MI</span></div>
-          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">Jasprit Bumrah</div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">186 Wickets | 7.30 Economy | Form: 94.2</div>
-          <div style="font-size: 0.8rem; color: var(--accent-orange);">Analyze Matchups →</div>
-        </div>
-
-        <div class="card" style="border-left: 4px solid var(--accent-yellow); cursor: pointer;" onclick="navigate('player', 'babar_azam')">
-          <div class="card-header"><span class="badge badge-orange">International</span><span class="card-subtitle">Non-IPL Star</span></div>
-          <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem;">Babar Azam</div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">4,145 T20I Runs | 0 IPL Matches</div>
-          <div style="font-size: 0.8rem; color: var(--accent-yellow);">View Empty-State Profile →</div>
-        </div>
-      </div>
-
-      <!-- Dashboard Sections Grid -->
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
-        <!-- Left: All-Time League Leaders -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem;">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">🏆 All-Time IPL Performance Leaders</div>
-            <div class="card-subtitle">Authentic 2008–2025 Records</div>
+            <div class="card-title">All-Time IPL Performance Leaders</div>
+            <div class="card-subtitle">2008–2025 Data</div>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
             <div>
-              <h4 style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">🏏 Top Run Scorers</h4>
+              <h4 style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Top Run Scorers</h4>
               <div id="dashboard-top-runs"></div>
             </div>
             <div>
-              <h4 style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">🎯 Top Wicket Takers</h4>
+              <h4 style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Top Wicket Takers</h4>
               <div id="dashboard-top-wickets"></div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Form Leaders & Prediction Quick Widget -->
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <div class="card">
             <div class="card-header">
-              <div class="card-title">🔥 Red-Hot Form Leaders</div>
+              <div class="card-title">IPL Form Ratings</div>
               <span class="badge badge-green">Last 5 Matches</span>
             </div>
             <div id="dashboard-form-leaders"></div>
@@ -119,115 +104,109 @@
 
           <div class="card">
             <div class="card-header">
-              <div class="card-title">🔮 Quick Prediction Engine</div>
+              <div class="card-title">Quick Match Predictor</div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
               <select id="dash-pred-t1" class="search-input"></select>
               <select id="dash-pred-t2" class="search-input"></select>
               <select id="dash-pred-venue" class="search-input"></select>
-              <button class="tab-btn active" onclick="runDashboardPrediction()" style="width: 100%;">Calculate Outcome</button>
-              <div id="dash-pred-result" style="display: none; margin-top: 0.5rem;"></div>
+              <button class="tab-btn active" onclick="runDashboardPrediction()" style="width: 100%;">Calculate Prediction</button>
+              <div id="dash-pred-result" style="display: none; margin-top: 0.4rem;"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. PLAYER PROFILE VIEW -->
+    <!-- 2. PLAYER PROFILE -->
     <section id="view-player" class="view-section">
-      <!-- Player Header Card -->
-      <div id="player-profile-header" class="card" style="margin-bottom: 1.5rem;"></div>
-
-      <!-- 11 Player Profile Tabs -->
+      <div id="player-profile-header" class="card" style="margin-bottom: 1.25rem;"></div>
       <div class="tabs-header">
         <button class="tab-btn active" onclick="switchPlayerTab('overview')">Overview</button>
         <button class="tab-btn" onclick="switchPlayerTab('batting')">Batting</button>
         <button class="tab-btn" onclick="switchPlayerTab('bowling')">Bowling</button>
         <button class="tab-btn" onclick="switchPlayerTab('ipl')">IPL Career & Seasons</button>
         <button class="tab-btn" onclick="switchPlayerTab('matches')">Last 5 & Match History</button>
-        <button class="tab-btn" onclick="switchPlayerTab('teams')">Teams</button>
+        <button class="tab-btn" onclick="switchPlayerTab('teams')">Franchises</button>
         <button class="tab-btn" onclick="switchPlayerTab('venues')">Venues</button>
         <button class="tab-btn" onclick="switchPlayerTab('opposition')">Opposition</button>
         <button class="tab-btn" onclick="switchPlayerTab('form')">Form Engine</button>
         <button class="tab-btn" onclick="switchPlayerTab('records')">Records</button>
-        <button class="tab-btn" onclick="switchPlayerTab('comparison')">Matchups & Compare</button>
+        <button class="tab-btn" onclick="switchPlayerTab('comparison')">Matchup Matrix</button>
       </div>
-
-      <!-- Player Tab Contents -->
       <div id="player-tab-content"></div>
     </section>
 
-    <!-- 3. TEAMS VIEW -->
+    <!-- 3. TEAMS -->
     <section id="view-teams" class="view-section">
       <div class="card-header" style="margin-bottom: 1rem;">
-        <h2 style="font-size: 1.5rem; font-weight: 800;">IPL Franchises & Team Analytics</h2>
+        <h2 style="font-size: 1.4rem; font-weight: 800;">IPL Franchises & Team Analytics</h2>
       </div>
-      <div id="teams-grid" class="grid-cards" style="margin-bottom: 1.5rem;"></div>
+      <div id="teams-grid" class="grid-cards" style="margin-bottom: 1.25rem;"></div>
       <div id="team-detail-container"></div>
     </section>
 
-    <!-- 4. VENUES VIEW -->
+    <!-- 4. VENUES -->
     <section id="view-venues" class="view-section">
       <div class="card-header" style="margin-bottom: 1rem;">
-        <h2 style="font-size: 1.5rem; font-weight: 800;">Venues & Pitch Conditions Analysis</h2>
+        <h2 style="font-size: 1.4rem; font-weight: 800;">IPL Stadiums & Pitch Analysis</h2>
       </div>
-      <div id="venues-grid" class="grid-cards" style="margin-bottom: 1.5rem;"></div>
+      <div id="venues-grid" class="grid-cards" style="margin-bottom: 1.25rem;"></div>
       <div id="venue-detail-container"></div>
     </section>
 
-    <!-- 5. PREDICTOR VIEW -->
+    <!-- 5. PREDICTOR -->
     <section id="view-predictor" class="view-section">
       <div class="card-header" style="margin-bottom: 1rem;">
         <div>
-          <h2 style="font-size: 1.5rem; font-weight: 800;">Explainable Match Outcome Predictor</h2>
-          <p style="color: var(--text-secondary); font-size: 0.875rem;">Multi-factor dynamic prediction engine powered by playing XI ratings, venue records, pitch metrics, and toss impact.</p>
+          <h2 style="font-size: 1.4rem; font-weight: 800;">IPL Match Outcome Predictor</h2>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">Multi-factor explainable machine learning prediction engine.</p>
         </div>
       </div>
       <div id="predictor-workbench"></div>
     </section>
 
-    <!-- 6. MATCH CENTER VIEW -->
+    <!-- 6. MATCH CENTER -->
     <section id="view-matches" class="view-section">
       <div class="tabs-header">
         <button class="tab-btn active" onclick="switchMatchCenterTab('upcoming')">Upcoming Fixtures</button>
-        <button class="tab-btn" onclick="switchMatchCenterTab('live')">Interactive Live Center</button>
-        <button class="tab-btn" onclick="switchMatchCenterTab('historical')">Historical 1,169+ Scorecards</button>
+        <button class="tab-btn" onclick="switchMatchCenterTab('live')">Live Match Center</button>
+        <button class="tab-btn" onclick="switchMatchCenterTab('historical')">Historical 1,169 Scorecards</button>
       </div>
       <div id="match-center-content"></div>
     </section>
 
-    <!-- 7. NEWS & AVAILABILITY VIEW -->
+    <!-- 7. SQUADS & NEWS -->
     <section id="view-news" class="view-section">
       <div class="card-header" style="margin-bottom: 1rem;">
-        <h2 style="font-size: 1.5rem; font-weight: 800;">Verified News & Player Availability Tracker</h2>
+        <h2 style="font-size: 1.4rem; font-weight: 800;">IPL Squads & Player Availability</h2>
       </div>
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem;">
         <div class="card">
-          <div class="card-header"><div class="card-title">📰 Official League News & Updates</div></div>
+          <div class="card-header"><div class="card-title">Official League News</div></div>
           <div id="news-list-container"></div>
         </div>
         <div class="card">
-          <div class="card-header"><div class="card-title">🩺 Player Availability Status</div></div>
+          <div class="card-header"><div class="card-title">Player Fitness & Availability</div></div>
           <div id="availability-list-container"></div>
         </div>
       </div>
     </section>
 
-    <!-- 8. ADMIN VIEW -->
+    <!-- 8. ADMIN -->
     <section id="view-admin" class="view-section">
       <div class="card-header" style="margin-bottom: 1rem;">
-        <h2 style="font-size: 1.5rem; font-weight: 800;">Data Management & API Integration Panel</h2>
+        <h2 style="font-size: 1.4rem; font-weight: 800;">IPL Dataset Ingestion & Status</h2>
       </div>
       <div id="admin-container"></div>
     </section>
   </main>
 
-  <footer style="max-width: 1440px; margin: 3rem auto 1.5rem auto; padding: 1.5rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem;">
-    <div><strong>CricIntel Pro 2.0</strong> — Cricket Analytics & Explainable Prediction Platform</div>
-    <div style="margin-top: 0.25rem;">Developed by <strong style="color: var(--accent-green);">A VIVEK GOUD</strong> • Computer Science and Engineering, Vardhaman College of Engineering</div>
-    <div style="margin-top: 0.25rem;"><a href="https://github.com/avivekgoud/cricket-analytics" target="_blank" style="color: var(--accent-blue); text-decoration: none;">GitHub Repository</a></div>
+  <footer style="max-width: 1360px; margin: 3rem auto 1.5rem auto; padding: 1.25rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem;">
+    <div><strong>CricIntel Pro 2.0</strong> — Indian Premier League Analytics Platform</div>
+    <div style="margin-top: 0.25rem;">Developed by <strong style="color: var(--accent-primary);">A Vivek Goud</strong> • Department of Computer Science and Engineering, Vardhaman College of Engineering</div>
+    <div style="margin-top: 0.25rem;"><a href="https://github.com/avivekgoud/cricket-analytics" target="_blank" style="color: var(--accent-primary); text-decoration: none;">GitHub Repository</a></div>
   </footer>
-
 
   <script src="/static/app.js"></script>
 </body>
