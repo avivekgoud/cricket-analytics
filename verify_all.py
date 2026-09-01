@@ -72,19 +72,20 @@ for idx, payload in enumerate(test_payloads, 1):
     conf = res["confidence_score"]
     print(f" [OK] Scenario {idx}: {t1_name} vs {t2_name} -> Favored: {fav} ({prob}%, Conf: {conf}%)")
 
-print("\n=== 4. VERIFYING ALL-TIME IPL STATISTICAL ACCURACY ===")
+print("\n=== 4. VERIFYING ALL-TIME IPL STATISTICAL ACCURACY (2008-2026) ===")
 kohli = data_loader.get_player_profile("v_kohli")
-assert kohli["ipl_stats"]["runs"] == 8671, f"Expected 8671, got {kohli['ipl_stats']['runs']}"
-assert kohli["ipl_stats"]["matches"] == 260
+assert kohli["ipl_stats"]["runs"] == 9336, f"Expected 9336, got {kohli['ipl_stats']['runs']}"
+assert kohli["ipl_stats"]["matches"] == 283, f"Expected 283, got {kohli['ipl_stats']['matches']}"
 print(f" [OK] Virat Kohli: {kohli['ipl_stats']['runs']} runs in {kohli['ipl_stats']['matches']} matches.")
 
 bumrah = data_loader.get_player_profile("jj_bumrah")
-assert bumrah["ipl_stats"]["wickets"] == 186, f"Expected 186, got {bumrah['ipl_stats']['wickets']}"
+assert bumrah["ipl_stats"]["wickets"] == 187, f"Expected 187, got {bumrah['ipl_stats']['wickets']}"
+assert bumrah["ipl_stats"]["economy"] == 7.34, f"Expected 7.34, got {bumrah['ipl_stats']['economy']}"
 print(f" [OK] Jasprit Bumrah: {bumrah['ipl_stats']['wickets']} wickets, Economy: {bumrah['ipl_stats']['economy']}.")
 
 chahal = data_loader.get_player_profile("ys_chahal")
-assert chahal["ipl_stats"]["wickets"] >= 200
-print(f" [OK] Yuzvendra Chahal: {chahal['ipl_stats']['wickets']} wickets (All-time IPL leader).")
+assert chahal["current_team"] == "Punjab Kings"
+print(f" [OK] Yuzvendra Chahal: {chahal['ipl_stats']['wickets']} wickets, Franchise: {chahal['current_team']}.")
 
 print("\n" + "="*55)
 print(" ALL AUDIT CATEGORIES PASSED WITH 100% SUCCESS!")

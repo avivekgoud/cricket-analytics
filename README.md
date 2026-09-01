@@ -1,6 +1,6 @@
-# CricIntel Pro: Cricket Analytics, Player Intelligence, and Explainable Match Prediction Platform
+# CricIntel Pro: IPL Analytics, Player Intelligence, and Explainable Match Prediction Platform
 
-An enterprise-grade, data-driven cricket analytics and machine learning system engineered to deliver deep player intelligence, granular head-to-head matchup modeling, stadium pitch evaluations, and explainable match outcome predictions. Powered by authentic ball-by-ball records from 1,169 matches (278,205 deliveries) across 2008 to 2025.
+An enterprise-grade, data-driven IPL analytics and machine learning system engineered to deliver deep player intelligence, granular head-to-head matchup modeling, stadium pitch evaluations, and explainable match outcome predictions. Powered by authentic ball-by-ball records from 1,200+ matches (280,000+ deliveries) across 2008 to 2026.
 
 ---
 

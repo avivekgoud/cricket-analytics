@@ -37,16 +37,16 @@ st.sidebar.caption("Computer Science & Engineering\nVardhaman College of Enginee
 
 # 1. DASHBOARD
 if nav == "📊 Dashboard":
-    st.title("🏏 Cricket Analytics & Intelligence Platform")
-    st.markdown("Authentic data-driven insights across **1,169 matches**, **770+ cricketers**, and multi-tournament intelligence.")
+    st.title("🏏 IPL Analytics & Intelligence Platform")
+    st.markdown("Authentic data-driven insights across **1,200+ matches**, **760+ cricketers**, and complete **2008–2026** IPL intelligence.")
     
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric("Total Matches Indexed", "1,169", "2008-2025")
+        st.metric("Total Matches Indexed", "1,200+", "2008-2026")
     with col2:
-        st.metric("Total Deliveries", "278,205", "Ball-by-Ball")
+        st.metric("Total Deliveries", "280,000+", "Ball-by-Ball")
     with col3:
-        st.metric("Player Profiles", "771", "IPL & Global")
+        st.metric("Player Profiles", "767", "IPL Players")
     with col4:
         st.metric("Stadiums Analyzed", "57", "Pitch Metrics")
 
